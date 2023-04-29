@@ -1,0 +1,45 @@
+.dark-mode{
+    background-color: rgb(32, 31, 31);
+}
+
+.typewriter{
+    border-right: 5px white;
+}
+
+.typerwriter-div{
+    font-family: monospace;
+    display: inline-block;
+}
+
+a{
+    text-decoration: none;
+    color: none;
+}
+
+.text2{
+    border-right: white 5px solid;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2.5s steps(22),
+               cursor .4s step-end infinite alternate;
+    animation-fill-mode: forwards;
+}
+
+.text2::after {
+    content: ""; /* Create a pseudo-element */
+    display: inline-block;
+    width: 0;
+    height: 100%; /* Match the height of the text */
+    border-right: 2px solid transparent; /* Hide the border */
+    caret-color: transparent; /* Hide the cursor */
+}
+
+
+@keyframes cursor {
+    50%{border-color: transparent}
+}
+
+@keyframes typing{
+    from {width: 0}
+} 

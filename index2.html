@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grey {
+  color: #d3d3d3;
+}
+
+.white {
+  color: #fff;
+}
+
+.red {
+  color: #ff0000;
+}
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>MonkeyType Clone</h1>
+        <p>Type the following text:</p>
+        <div id="text-container"></div>
+        <input type="text" id="input-field">
+        <p id="score"></p>
+    </div>
+    
+      <script>
+        const text = "The quick brown fox jumps over the lazy dog.";
+
+let currentIndex = 0;
+let correctChars = 0;
+let incorrectChars = 0;
+
+const textContainer = document.getElementById("text-container");
+const inputField = document.getElementById("input-field");
+const scoreDisplay = document.getElementById("score");
+
+function generateText() {
+  const textArray = text.split("");
+  textArray.forEach((char, index) => {
+    const span = document.createElement("span");
+    span.innerText = char;
+    if (index >= currentIndex) {
+      span.classList.add("grey");
+    }
+    textContainer.appendChild(span);
+  });
+}
+
+generateText();
+
+inputField.addEventListener("input", () => {
+  const inputText = inputField.value;
+  const textArray = text.split("");
+  textArray.forEach((char, index) => {
+    const span = textContainer.children[index];
+    if (!span) {
+      return;
+    }
+    if (char === inputText[index]) {
+      span.classList.remove("grey");
+      span.classList.remove("red");
+      span.classList.add("white");
+      correctChars++;
+    } else if (inputText[index] === undefined) {
+      span.classList.remove("white");
+      span.classList.remove("red");
+      span.classList.add("grey");
+    } else {
+      span.classList.remove("white");
+      span.classList.remove("grey");
+      span.classList.add("red");
+      incorrectChars++;
+    }
+  });
+  
+  const score = (correctChars / (correctChars + incorrectChars)) * 100;
+  scoreDisplay.innerText = `Score: ${score.toFixed(2)}%`;
+});
+
+inputField.focus();
+
+      </script>
+      
+</body>
+</html>
