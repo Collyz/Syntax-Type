@@ -23,30 +23,40 @@
         </div>
         <img src="images/dino100_72_dpi_flipped_outline.png" alt="dinosaur full body logo flipped" width="50">
         <br>
-        <a href="connection/authentication.html"><button class="btn btn-light mt-3" id="register-btn">Login/Register</button></a>
-        <a href=""><button class="btn btn-light mt-3 mx-4" id="play-btn">Play as Guest</button></a>
+        <a href="connection/authentication.html"><button class="btn btn-dark mt-3" id="register-btn">Login/Register</button></a>
+        <a href=""><button class="btn btn-dark mt-3 mx-4" id="play-btn">Play as Guest</button></a>
     </div>
-    <div class="bg-body-secondary mb-4 mx-auto p-5 text-center text-white divs" data-bs-theme="dark">
+    <div class="bg-body-secondary mx-auto p-5 text-center text-white divs" data-bs-theme="dark">
       <h5 class='mb-5'>
         Supported Languages: Java, Python, C++ and more to come!
       </h5>
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-row p-0">
         <div class="card flex-fill">
-          <div class="card-body">
-            <h5 class="card-title">Java</h5>
-            <p>Some content</p>
+          <div class="card-body typing">
+            <h4 class="card-title mb-2"><u>Java</u></h4>
+            <p class='m-0 fw-bold'>Examples:</p>
+            <p class='m-0 lh-sm typing'style='color:green;'>Math.pow(a,x);
+            <br>Scanner.hasNext();<br>System.err.println();<br>SplittableRandom();
+            <br>BigInteger();<br>new;<br>SplittableRandom();<br>args.length;
+            <br>ClassNotFoundException<br>ArrayList<>()</p>
           </div>
         </div>
         <div class="card flex-fill">
           <div class="card-body">
-            <h5 class="card-title">Python</h5>
-            <p>Some content</p>
+            <h5 class="card-title"><u>Python</u></h5>
+            <p class='m-0 lh-sm typing'style='color:green;'>5**3
+            <br>input('prompt')<br>print()<br>
+            <br>BigInteger();<br>elif<br>random.randint(a,b)<br>args.length;
+            <br>ClassNotFoundException<br>ArrayList<>()</p>
           </div>
         </div>
         <div class="card flex-fill">
           <div class="card-body">
-            <h5 class="card-title">C++</h5>
-            <p>Some content</p>
+            <h5 class="card-title"><u>C++</u></h5>
+            <p class='m-0 lh-sm typing'style='color:green;'>Math.pow(a,x);
+            <br>Scanner.hasNext();<br>System.err.println();<br>SplittableRandom();
+            <br>BigInteger();<br>new;<br>SplittableRandom();<br>args.length;
+            <br>ClassNotFoundException<br>ArrayList<>()</p>
           </div>
         </div>
       </div>

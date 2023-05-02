@@ -8,8 +8,6 @@ function lightMode(){
     let divs = document.querySelectorAll(".divs"); 
     let buttons = document.querySelectorAll('.btn');
     let modeLabel = document.getElementById('mode-label');
-    console.log(divs[0]);
-    console.log(divs[1]);
     if(radioBTN.checked){
         document.body.setAttribute("data-bs-theme","light");
         bar.setAttribute("data-bs-theme","light");
@@ -19,8 +17,8 @@ function lightMode(){
             divs[i].classList.remove("text-white");
         }
         for(let i = 0; i < buttons.length; i++){
-            buttons[i].classList.remove("btn-light");
-            buttons[i].classList.add('btn-dark');
+            buttons[i].classList.remove("btn-dark");
+            buttons[i].classList.add('btn-light');
         }
         modeLabel.innerHTML = 'Light Mode';
     }else{
@@ -32,8 +30,8 @@ function lightMode(){
             divs[i].classList.add("text-white");
         }
         for(let i = 0; i < buttons.length; i++){
-            buttons[i].classList.remove("btn-dark");
-            buttons[i].classList.add('btn-light');
+            buttons[i].classList.remove("btn-light");
+            buttons[i].classList.add('btn-dark');
         }
         modeLabel.innerHTML = 'Dark Mode';
     }
