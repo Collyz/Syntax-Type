@@ -36,3 +36,43 @@ function lightMode(){
         modeLabel.innerHTML = 'Dark Mode';
     }
 }
+
+/**
+ * Shows/Hides the password
+ */
+function passwordToggle1() {
+    let pass = document.getElementById("password");
+    let icon = document.getElementById('eye');
+    if (pass.type == 'password') {
+        pass.type = 'text';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye-fill');
+    } else {
+        pass.type = 'password';
+        icon.classList.remove('bi-eye-fill');
+        icon.classList.add('bi-eye-slash');
+    }
+
+}
+
+function passwordToggle2(){
+    let pass2 = document.getElementById("password2");
+    let pass3 = document.getElementById("password3");
+    let icon2 = document.getElementById('eye2');
+    let icon3 = document.getElementById('eye3');
+    if (pass2.type == 'password' || pass3.type == 'password'){
+        pass2.type = 'text';
+        pass3.type = 'text';
+        icon2.classList.remove('bi-eye-slash');
+        icon3.classList.remove('bi-eye-slash');
+        icon2.classList.add('bi-eye-fill');
+        icon3.classList.add('bi-eye-fill');
+    }else{
+        pass2.type='password';
+        pass3.type='password';
+        icon2.classList.remove('bi-eye-fill');
+        icon2.classList.add('bi-eye-slash');
+        icon3.classList.remove('bi-eye-fill');
+        icon3.classList.add('bi-eye-slash');
+    }
+}
