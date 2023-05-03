@@ -4,26 +4,17 @@
     $password1 = $_POST['password1'];
     $password2 = $_POST['password2'];
 
-    $usernameCheck = false;
-    $passwordCheck = false;
-    if(!preg_match("|^[a-zA-Z]{5,25}$|", $name)) {
-        echo "Invalid name";
-     }
-
-    if($password1 == $password2){
-        
-        $hash = hash('sha512', $username);
-        echo $hash;
-        include('connection.php');
-        $sql = "INSERT INTO users (user_username, user_password, user_has) VALUES ('$username','$password1','$hash')";
-        if($conn->query($sql)==TRUE){
-            header('location:../login-register.php?msg=You can now login!');
-        }else{
-            header('location:../login-register.php?msg=Contact website admin, a severe error has occured');
-        }
+    $hash = hash('sha512', $username);
+    include('connection.php');
+    $sql = "INSERT INTO users (user_username, user_password, user_hash) VALUES ('$username','$password1','$hash')";
+    if($conn->query($sql)==true){
+        header('location:../login-register.php?msg=You can now login!<br>This is your hash, save it somewhere: '.
+        $hash.'<br>DO NOT LOSE THIS HASH');
     }else{
-        header('location:../login-register.php?msg=Passwords do not match, go back and try again!');
+        header('location:../login-register.php?msg=Contact website admin, a severe error has occured');
     }
+
+    $conn->close();
 
     
 

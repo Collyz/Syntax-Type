@@ -49,7 +49,7 @@
             <p class='m-0 fw-bold'>Examples:</p>
             <p class='m-0 lh-sm typing'style='color:green;'>pow();
             <br>std::cin;<br>std::cout;<br>std::fstream;
-            <br>BigInteger();<br>new;<br>rand();<br>vector<>;
+            <br>BigInt();<br>new;<br>rand();<br>vector<>;
             <br>floor()<br>std::set<></p>
           </div>
         </div>

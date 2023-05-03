@@ -7,11 +7,10 @@
         }
         else {
 
-            echo "Connected successfully";
+            echo "Connected successfully<br>";
         }
 
-        mysqli_select_db($conn, "ourtestdatabase") or 
-        die("Could not connect to the database");
+        mysqli_select_db($conn, "syntax_type") or die("Could not connect to the database");
 
         echo "Connected to the database successfully";
 

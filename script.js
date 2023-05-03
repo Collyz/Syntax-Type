@@ -1,3 +1,38 @@
+/**
+ * Wait for the document to load first
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  
+    const username1 = document.getElementById('username1');
+    const username2 = document.getElementById('username2');
+    const password1 = document.getElementById('password1');
+    const password2 = document.getElementById('password2');
+    const password3 = document.getElementById('password3');
+
+    const fields = [username1, username2, password1, password2, password3];
+
+    fields.forEach(field => {
+        field.addEventListener('input', function(event){
+        if(field.validity.patternMismatch){
+        if(field.type === 'text') {
+            field.setCustomValidity('Must be between 5 and 35 characters and must only contain letters');
+        } else if(field.type === 'password') {
+            field.setCustomValidity('Must be between 5 and 35 charactes and must only contain letters and number, no special characters');
+        }
+        }else{
+            field.setCustomValidity('');
+        }
+        });
+    });
+    const form = document.getElementById('form2');
+    form.addEventListener('submit', function(event) {
+        if (password2.value !== password3.value) {
+            event.preventDefault();
+            alert('The passwords do not match');
+        }
+    });
+
+});
 
 /**
  * Gets the respective elements and changes their theme based on the click from the radio button
@@ -41,7 +76,7 @@ function lightMode(){
  * Shows/Hides the password
  */
 function passwordToggle1() {
-    let pass = document.getElementById("password");
+    let pass = document.getElementById("password1");
     let icon = document.getElementById('eye');
     if (pass.type == 'password') {
         pass.type = 'text';
@@ -75,4 +110,23 @@ function passwordToggle2(){
         icon3.classList.remove('bi-eye-fill');
         icon3.classList.add('bi-eye-slash');
     }
+}
+
+
+function generationPrompt(){
+
+}
+
+let startTime;
+function timer(){
+    let timer = document.getElementById('timer');
+    timer.innerText = 0;
+    startTime = new Date();
+    setInterval(() => {
+        getTimerTime();
+    },1000)
+}
+
+function getTimerTime(){
+    return Math.floor((new Date() - startTime)/1000);
 }
