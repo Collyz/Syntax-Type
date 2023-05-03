@@ -18,7 +18,7 @@
     </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <form action="connection/login.php" name='form1'>
+    <form action="connection/login.php" name='form1' method='get'>
         <table class="table table-hover table-rounded table-borderless mt-2" align="center">
             <tr>
                 <th colspan='4'>Login to Syntax-Type</th>
@@ -46,7 +46,7 @@
   </div>
 
   <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="1">
-    <form action="connection/register.php" name='form2'>
+    <form action="connection/register.php" name='form2' method='post'>
         <table class="table table-hover table-rounded table-borderless mt-2" align="center">
             <tr>
                 <th colspan='4'>Register to Syntax-Type</th>
@@ -61,7 +61,7 @@
                 <td>Password</td>
                 <td colspan='3'>
                     <div class="input-group">
-                        <input class='form-control' type="password" name='password' id='password2'>
+                        <input class='form-control' type="password" name='password1' id='password2'>
                         <span class="input-group-text" id='basic-addon'><i id='eye2' onclick='passwordToggle2()'class="bi bi-eye-slash"></i></span>
                     </div>
                 </td>
@@ -70,7 +70,7 @@
                 <td>Re-Type Pass</td>
                 <td colspan='3'>
                     <div class="input-group">
-                        <input class='form-control' type="password" name='password' id='password3'>
+                        <input class='form-control' type="password" name='password2' id='password3'>
                         <span class="input-group-text" id='basic-addon'><i id='eye3' onclick='passwordToggle2()'class="bi bi-eye-slash"></i></span>
                     </div>
                 </td>
@@ -80,8 +80,16 @@
             </tr>
         </table>
     </form>
+    
   </div>
 </div>
     </div>
+    <div class="container text-center">
+    <?php
+            error_reporting(0);
+            echo $_GET['msg'];
+    ?>
+    </div>
+    
 </body>
 </html>
