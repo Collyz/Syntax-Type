@@ -15,7 +15,7 @@
         <img src="images/dino100_72_dpi_flipped_outline.png" alt="dinosaur full body logo flipped" width="50">
         <br>
         <a href="login-register.php"><button class="btn btn-dark mt-3" id="register-btn">Login/Register</button></a>
-        <a href=""><button class="btn btn-dark mt-3 mx-4" id="play-btn">Play as Guest</button></a>
+        <a href="typing.php"><button class="btn btn-dark mt-3 mx-4" id="play-btn">Play as Guest</button></a>
     </div>
     <div class="bg-body-secondary mx-auto pb-5 px-4 pt-4 text-center text-white divs"
      data-bs-theme="dark">

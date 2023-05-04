@@ -160,6 +160,7 @@ function generatePrompt(){
                 });
             }
         }
+        document.getElementById('score').innerText = '';
     }
 }
 
@@ -168,6 +169,8 @@ function javaText(){
     for(let i = 0; i < 20; i++){
         text += javaWords[getRandomInt(40)] + " ";
     }
+    let inputElement = document.getElementById("userInput");
+    inputElement.disabled = false;
     return text;
 }
 
@@ -176,6 +179,8 @@ function pythonText(){
     for(let i = 0; i < 20; i++){
         text += python_words[getRandomInt(40)] + " ";
     }
+    let inputElement = document.getElementById("userInput");
+    inputElement.disabled = false;
     return text;
 }
 
@@ -184,25 +189,29 @@ function cText(){
     for(let i = 0; i < 20; i++){
         text += cWords[getRandomInt(40)] + " ";
     }
+    let inputElement = document.getElementById("userInput");
+    inputElement.disabled = false;
     return text;
 }
 
-// function generateLeaderBoardPrompt(){}
+// TODO  
+//function generateLeaderBoardPrompt(){}
 
 let startTime;
+let hasCalled = false;
+let countdownTimer;
 function timer(){
-    startTime = document.getElementById('timer').value;
-    let countdownTimer = setInterval(() => {
-        timeLeft--;
-        document.getElementById("timer").textContent = timeLeft;
-        if (timeLeft <= 0) {
-          clearInterval(countdownTimer);
-        }
-      }, 1000);
-}
-
-function getTimerTime(){
-    return Math.floor((new Date() - startTime)/1000);
+    if(!hasCalled){
+        hasCalled = true;
+        startTime = document.getElementById('timer').textContent;
+        countdownTimer = setInterval(() => {
+            startTime--;
+            document.getElementById("timer").innerText = startTime;
+            if (startTime <= 0) {
+              clearInterval(countdownTimer);
+            }
+          }, 1000);
+    }
 }
 
 /**
@@ -214,27 +223,59 @@ function getRandomInt(max){
     return Math.floor(Math.random() * max);
 }
 
-//Event listener for use input
+// Set the average word length (in characters)
+const AVG_WORD_LENGTH = 5;
+
+// Get the start time
+let startTime2 = new Date();
+
+// Event listener for user input
 const inputElement = document.getElementById('userInput');
-inputElement.addEventListener('input', () =>{
+let currentIndex = 0;
+let correctChars = 0;
+let incorrectChars = 0;
+inputElement.addEventListener('input', () => {
     let text = document.getElementById('typefield');
     const arrayOfSyntax = text.querySelectorAll('span');
     const arrayValue = inputElement.value.split('');
     let correct = true;
     arrayOfSyntax.forEach((characterSpan, index) => {
         const character = arrayValue[index];
-        if(character == null){
+        if (character == null) {
             characterSpan.classList.remove('correct');
             characterSpan.classList.remove('incorrect');
             correct = false;
-        }else if(character === characterSpan.innerText){
+        } else if (character === characterSpan.innerText) {
             characterSpan.classList.add('correct');
             characterSpan.classList.remove('incorrect');
-        } else{
+            correctChars++;
+        } else {
             characterSpan.classList.remove('correct');
             characterSpan.classList.add('incorrect');
             correct = false;
+            incorrectChars++;
         }
-        if(correct){}
     });
+    if (correct || (document.getElementById('timer').textContent == '0')) {
+        let inputElement = document.getElementById("userInput");
+        let scoreDisplay = document.getElementById('score');
+        
+        //Stop the timer
+        clearInterval(countdownTimer);
+
+        //Disable user inputs
+        inputElement.disabled = true;
+        
+        //Calculate accuracy
+        let accuracy = (correctChars / (correctChars + incorrectChars)) * 100;
+        let accuracyRounded = accuracy.toFixed(2);
+        
+        // Calculate words per minute
+        let elapsedTime = (new Date() - startTime2) / 1000 / 60; // in minutes
+        let wordsTyped = inputElement.value.length / AVG_WORD_LENGTH;
+        let wpm = Math.round(wordsTyped / elapsedTime);
+
+        // Display wpm and accuracy
+        scoreDisplay.innerHTML = `Words Per Minute: ${wpm}<br>Accuracy: ${accuracyRounded}%`;
+    }
 });

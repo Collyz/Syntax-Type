@@ -1,6 +1,6 @@
 <nav id="bar" class="navbar bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="page_1.php">
+          <a class="navbar-brand" href="index.php">
             <img class="align-top" src="images/DinoHead_outline.png" alt="dinosaur head logo" width="32" height="32">
             Syntax-Type
           </a>

@@ -14,6 +14,7 @@
             error_reporting(1);
             if(isset($_SESSION['username'])){
                 echo $_SESSION['username'].'!';
+                session_destroy();
             }else{
                 echo 'Guest!';
             }
@@ -71,7 +72,7 @@
 
 
     </div>
-    <div class="container text-center border mt-3 mb-3 pb-0 pt-1 border rounded-5" style='width:100px;'>
+    <div class="container text-center border mb-3 pb-0 pt-1 border rounded-5" style='width:100px;'>
         <h1 id='timer'>15</h1>
         
     </div>
@@ -80,8 +81,11 @@
             Select an option above
         </div>
         <div>
-            <input class='form-control mt-4' type="text" id='userInput' placeholder='type here' autofocus oninput='timer()'>
+            <input class='form-control mt-4' type="text" id='userInput' placeholder='type here' autofocus oninput='timer()' disabled>
         </div>
+    </div>
+    <div class="container mt-3">
+        <h6 id='score'>Score: N/A</h6>
     </div>
 
     <script src="data.js"></script>
