@@ -111,22 +111,3 @@ function passwordToggle2(){
         icon3.classList.add('bi-eye-slash');
     }
 }
-
-
-function generationPrompt(){
-
-}
-
-let startTime;
-function timer(){
-    let timer = document.getElementById('timer');
-    timer.innerText = 0;
-    startTime = new Date();
-    setInterval(() => {
-        getTimerTime();
-    },1000)
-}
-
-function getTimerTime(){
-    return Math.floor((new Date() - startTime)/1000);
-}
