@@ -28,12 +28,12 @@
         </div>
     </div>
     <div class="settings container text-end" id='settings'>
-        <a data-bs-toggle='modal' data-bs-target='#board'>Leaderboard</a>&nbsp|&nbsp;Time:
-        <span class='time' id='time15' style='cursor: pointer;'>15</span>
-        <span class='time' id='time30' style='cursor: pointer;'>30</span>
-        <span class='time' id='time45' style='cursor: pointer;'>45</span>
-        <span class='time' id='time60' style='cursor: pointer;'>60</span>
-        <span class='time' id='time120' style='cursor: pointer;'>120</span>
+        <a class='clickable' data-bs-toggle='modal' data-bs-target='#board'>Leaderboard</a>&nbsp|&nbsp;Time:
+        <span class='time clickable' id='time15'>15</span>
+        <span class='time clickable' id='time30'>30</span>
+        <span class='time clickable' id='time45'>45</span>
+        <span class='time clickable' id='time60'>60</span>
+        <span class='time clickable' id='time120'>120</span>
 
         <!-- Modal -->
         <div class="modal fade" id="board" tabindex="-1" aria-labelledby="boardLabel" aria-hidden="true">
@@ -90,13 +90,6 @@
 
     <script src="data.js"></script>
     <script>
-        let times = document.querySelectorAll('.time');
-        let timer2 = document.getElementById('timer');
-        times.forEach(t => {
-        t.addEventListener('click', () => {
-            timer2.textContent = `${t.textContent}`;
-            });
-        });
     </script>
 
 </body>

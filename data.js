@@ -132,6 +132,7 @@ const cWords = [
     'exp();'
 ];
 
+let selectedTime = document.getElementById('timer').textContent;
 
 function generatePrompt(){
     let text = document.getElementById('typefield');
@@ -164,13 +165,19 @@ function generatePrompt(){
     }
 }
 
+function makeUserInputAvailable(){
+    inputElement.disabled = false;
+    inputElement.value = '';
+    document.getElementById('timer').innerText = selectedTime;
+    clearInterval(countdownTimer);
+}
+
 function javaText(){
     let text = '';
     for(let i = 0; i < 20; i++){
         text += javaWords[getRandomInt(40)] + " ";
     }
-    let inputElement = document.getElementById("userInput");
-    inputElement.disabled = false;
+    makeUserInputAvailable();
     return text;
 }
 
@@ -179,8 +186,7 @@ function pythonText(){
     for(let i = 0; i < 20; i++){
         text += python_words[getRandomInt(40)] + " ";
     }
-    let inputElement = document.getElementById("userInput");
-    inputElement.disabled = false;
+    makeUserInputAvailable();
     return text;
 }
 
@@ -189,8 +195,7 @@ function cText(){
     for(let i = 0; i < 20; i++){
         text += cWords[getRandomInt(40)] + " ";
     }
-    let inputElement = document.getElementById("userInput");
-    inputElement.disabled = false;
+    makeUserInputAvailable();
     return text;
 }
 
@@ -213,6 +218,16 @@ function timer(){
           }, 1000);
     }
 }
+
+//Time settings
+let times = document.querySelectorAll('.time');
+let timer2 = document.getElementById('timer');
+times.forEach(t => {
+t.addEventListener('click', () => {
+    timer2.textContent = `${t.textContent}`;
+    selectedTime = document.getElementById('timer').textContent;
+    });
+});
 
 /**
  * Gives a random integer between 0 (inclusive)
@@ -257,7 +272,6 @@ inputElement.addEventListener('input', () => {
         }
     });
     if (correct || (document.getElementById('timer').textContent == '0')) {
-        let inputElement = document.getElementById("userInput");
         let scoreDisplay = document.getElementById('score');
         
         //Stop the timer

@@ -58,3 +58,7 @@ a{
     color: red;
     text-decoration: underline;
 }
+
+.clickable{
+    cursor: pointer;
+}
