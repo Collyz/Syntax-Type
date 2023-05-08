@@ -1,139 +1,31 @@
 const options = document.querySelectorAll('.lang');
 
-const javaWords = [
-    'byte',
-    'short',
-    'char',
-    'String',
-    'boolean',
-    'null',
-    'System.out.println();',
-    'public',
-    'static',
-    'void',
-    'main',
-    'while()',
-    'if()',
-    'else',
-    'Math.max();',
-    'Math.min()',
-    'Math.floor();',
-    'Math.sqrt();',
-    'Math.abs();',
-    'Math.random();',
-    'Math.ceil();',
-    'Math.log();',
-    'System.out.printf();',
-    'System.out.print();',
-    'System.out',
-    'System.in',
-    'int',
-    'double',
-    'float',
-    'long',
-    'Math.pow();',
-    'Scanner.next();',
-    'System.err.println();',
-    'SplittableRandom();',
-    'BigInteger();',
-    'new',
-    'SplittableRandom();',
-    'args.length;',
-    'ClassNotFoundException',
-    'ArrayList<>()'
-];
+//Retrieve Java syntax words from JSON
+let javaWords = [];
+fetch('javascript/syntax-words/java-syntax.json')
+  .then(response => response.json())
+  .then(data => {
+    javaWords = data.javaWords; //Store the syntax
+  }).catch(error => console.error(error));
 
-const python_words = [
-    'str()',
-    'int()',
-    'float()',
-    'type()',
-    'global',
-    'bool()',
-    'True',
-    'False',
-    'list.sort()',
-    'list.copy()',
-    'list.insert()',
-    'list.clear()',
-    'tuple.count()',
-    'tuple.index()',
-    'set.difference()',
-    'set.discard()',
-    'dict.get()',
-    'dict.keys()',
-    'dict.popitem()',
-    'dict.update()',
-    'dict.values()',
-    'import',
-    'matplotlib',
-    'os.remove()',
-    'os.path.exists()',
-    'f.write()',
-    'f.close()',
-    'f.read()',
-    'numpy',
-    'pandas',
-    'input()',
-    'print()',
-    'open()',
-    'range()',
-    'elif',
-    'random.randint(a,b)',
-    'timeit()',
-    'math.floor()',
-    're.search()',
-    'min()',
-    'max()'
-];
+//Retrieve Python syntax words from JSON
+let pythonWords = [];
+fetch('javascript/syntax-words/python-syntax.json')
+  .then(response => response.json())
+  .then(data => {
+    pythonWords = data.pythonWords; //Store the syntax
+  }).catch(error => console.error(error));
 
+//Retrieve C++ syntax words from JSON
+let cWords = [];
+fetch('javascript/syntax-words/c++-syntax.json')
+  .then(response => response.json())
+  .then(data => {
+    cWords = data.cWords; //Store the syntax
+  }).catch(error => console.error(error));
 
-const cWords = [
-    'main()',
-    'int',
-    'double',
-    'char',
-    'string',
-    'bool',
-    'const',
-    'cout',
-    'cin',
-    'fstream();',
-    'vector<>',
-    'set<>',
-    'struct{}',
-    'int*',
-    'double*',
-    'char*',
-    'string*',
-    'bool*',
-    'void',
-    'delete',
-    'mutable',
-    'true',
-    'false',
-    'volatile',
-    'register',
-    'private',
-    'goto',
-    'inline',
-    'explicit',
-    'extern',
-    'break',
-    'static',
-    'new',
-    'floor();',
-    'rand();',
-    'pow();',
-    'abs();',
-    'log();',
-    'log10();',
-    'fmod();',
-    'exp();'
-];
 
 let selectedTime = document.getElementById('timer').textContent;
-
 function generatePrompt(){
     let text = document.getElementById('typefield');
     text.innerHTML = '';
@@ -175,7 +67,7 @@ function makeUserInputAvailable(){
 function javaText(){
     let text = '';
     for(let i = 0; i < 20; i++){
-        text += javaWords[getRandomInt(40)] + " ";
+        text += javaWords[getRandomInt(javaWords.length)] + " ";
     }
     makeUserInputAvailable();
     return text;
@@ -184,7 +76,7 @@ function javaText(){
 function pythonText(){
     let text = '';
     for(let i = 0; i < 20; i++){
-        text += python_words[getRandomInt(40)] + " ";
+        text += pythonWords[getRandomInt(pythonWords.length)] + " ";
     }
     makeUserInputAvailable();
     return text;
@@ -193,7 +85,7 @@ function pythonText(){
 function cText(){
     let text = '';
     for(let i = 0; i < 20; i++){
-        text += cWords[getRandomInt(40)] + " ";
+        text += cWords[getRandomInt(cWords.length)] + " ";
     }
     makeUserInputAvailable();
     return text;
@@ -217,6 +109,14 @@ function timer(){
             }
           }, 1000);
     }
+}
+
+/**
+ * Stops the timer and resetst the hasCalled boolean so the timer can start again if needed
+ */
+function stopTimer(){
+    clearInterval(countdownTimer);
+    hasCalled = false;
 }
 
 //Time settings
@@ -249,11 +149,13 @@ const inputElement = document.getElementById('userInput');
 let currentIndex = 0;
 let correctChars = 0;
 let incorrectChars = 0;
+
 inputElement.addEventListener('input', () => {
     let text = document.getElementById('typefield');
     const arrayOfSyntax = text.querySelectorAll('span');
     const arrayValue = inputElement.value.split('');
     let correct = true;
+    let correctCount = 0;
     arrayOfSyntax.forEach((characterSpan, index) => {
         const character = arrayValue[index];
         if (character == null) {
@@ -264,18 +166,22 @@ inputElement.addEventListener('input', () => {
             characterSpan.classList.add('correct');
             characterSpan.classList.remove('incorrect');
             correctChars++;
+            correctCount++;
         } else {
             characterSpan.classList.remove('correct');
             characterSpan.classList.add('incorrect');
             correct = false;
             incorrectChars++;
         }
+        if(correctCount+1 == arrayOfSyntax.length){
+            correct = true;
+        }
     });
     if (correct || (document.getElementById('timer').textContent == '0')) {
         let scoreDisplay = document.getElementById('score');
         
         //Stop the timer
-        clearInterval(countdownTimer);
+        stopTimer();
 
         //Disable user inputs
         inputElement.disabled = true;

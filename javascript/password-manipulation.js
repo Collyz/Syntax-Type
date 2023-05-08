@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Shows/Hides the password
+ * Shows/Hides the password for login tab
  */
 function passwordToggle1() {
     let pass = document.getElementById("password1");
@@ -51,6 +51,9 @@ function passwordToggle1() {
 
 }
 
+/**
+ * Shows/Hides the password for register tab
+ */
 function passwordToggle2(){
     let pass2 = document.getElementById("password2");
     let pass3 = document.getElementById("password3");

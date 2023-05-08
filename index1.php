@@ -4,9 +4,9 @@
   include('page-segments/head.php');
 ?>
 <body data-bs-theme="dark">
-    <?php
-      include('page-segments/navbar.php');
-    ?>
+  <?php
+    include('page-segments/navbar.php');
+  ?>
     <div id="about" class="bg-body-secondary mb-4 mx-auto p-5 text-center text-white divs" data-bs-theme="dark">
         <img src="images/dino100_72_dpi_outline.png" alt="dinosaur full body logo" width="50">
         <div class="typerwriter-div align-top">
@@ -25,12 +25,15 @@
       <div class="d-flex flex-row p-0">
         <div class="card flex-fill">
           <div class="card-body" style='font-family: Arial, Helvetica, sans-serif;'>
-            <h4 class="card-title mb-2"><u>Java</u></h4>
+            <h4 class="card-title mb-2">
+              <u>Java</u>
+            </h4>
             <p class='m-0 fw-bold'>Examples:</p>
             <p class='m-0 lh-sm typing'style='color:green;'>Math.pow();
-            <br>Scanner.next();<br>System.err.println();<br>SplittableRandom();
-            <br>BigInteger();<br>new<br>SplittableRandom();<br>args.length;
-            <br>ClassNotFoundException<br>ArrayList<>()</p>
+              <br>Scanner.next();<br>System.err.println();<br>SplittableRandom();
+              <br>BigInteger();<br>new<br>SplittableRandom();<br>args.length;
+              <br>ClassNotFoundException<br>ArrayList<>()
+            </p>
           </div>
         </div>
         <div class="card flex-fill">
