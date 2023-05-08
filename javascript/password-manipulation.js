@@ -2,7 +2,6 @@
  * Wait for the document to load first
  */
 document.addEventListener('DOMContentLoaded', function() {
-  
     const username1 = document.getElementById('username1');
     const username2 = document.getElementById('username2');
     const password1 = document.getElementById('password1');
@@ -10,18 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const password3 = document.getElementById('password3');
 
     const fields = [username1, username2, password1, password2, password3];
-
+    
     fields.forEach(field => {
         field.addEventListener('input', function(event){
         if(field.validity.patternMismatch){
-        if(field.type === 'text') {
-            field.setCustomValidity('Must be between 5 and 35 characters and must only contain letters');
-        } else if(field.type === 'password') {
-            field.setCustomValidity('Must be between 5 and 35 charactes and must only contain letters and number, no special characters');
-        }
-        }else{
-            field.setCustomValidity('');
-        }
+            if(field.id === 'username1' || field.id === 'username2') {
+                field.setCustomValidity('Must be between 5 and 35 characters and must only contain letters');
+            } else if(field.id === 'password1' || field.id === 'password2' || field.id === 'password3') {
+                field.setCustomValidity('Must be between 5 and 35 charactes and must only contain letters and number, no special characters');
+            }
+            }else{
+                field.setCustomValidity('');
+            }
         });
     });
     const form = document.getElementById('form2');
@@ -33,44 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
-
-/**
- * Gets the respective elements and changes their theme based on the click from the radio button
- */
-function lightMode(){
-    let radioBTN = document.getElementById("flexSwitchCheckDefault");
-    let bar = document.getElementById("bar");
-    let divs = document.querySelectorAll(".divs"); 
-    let buttons = document.querySelectorAll('.btn');
-    let modeLabel = document.getElementById('mode-label');
-    if(radioBTN.checked){
-        document.body.setAttribute("data-bs-theme","light");
-        bar.setAttribute("data-bs-theme","light");
-        bar.setAttribute("class", "navbar bg-light");
-        for(let i = 0; i < divs.length; i++){
-            divs[i].setAttribute("data-bs-theme","light");
-            divs[i].classList.remove("text-white");
-        }
-        for(let i = 0; i < buttons.length; i++){
-            buttons[i].classList.remove("btn-dark");
-            buttons[i].classList.add('btn-light');
-        }
-        modeLabel.innerHTML = 'Light Mode';
-    }else{
-        document.body.setAttribute("data-bs-theme","dark");
-        bar.setAttribute("data-bs-theme","dark");
-        bar.setAttribute("class", "navbar bg-dark");
-        for(let i = 0; i < divs.length; i++){
-            divs[i].setAttribute("data-bs-theme","dark");
-            divs[i].classList.add("text-white");
-        }
-        for(let i = 0; i < buttons.length; i++){
-            buttons[i].classList.remove("btn-light");
-            buttons[i].classList.add('btn-dark');
-        }
-        modeLabel.innerHTML = 'Dark Mode';
-    }
-}
 
 /**
  * Shows/Hides the password

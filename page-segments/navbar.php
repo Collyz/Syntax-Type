@@ -9,7 +9,7 @@
           </div>
           <div class="form-check form-switch">
             <label id="mode-label" class="form-check-label" for="flexSwitchCheckDefault">Dark Mode</label>
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="lightMode()">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="mode()">
         </div>
         </div>
       </nav>

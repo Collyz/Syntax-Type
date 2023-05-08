@@ -88,7 +88,7 @@
         <h6 id='score'>Score: N/A</h6>
     </div>
 
-    <script src="data.js"></script>
+    <script src="javascript/game.js"></script>
     <script>
     </script>
 
