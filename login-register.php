@@ -87,10 +87,10 @@
     </div>
     <!-- Message to User -->
     <div class="container text-center">
-    <?php
-        error_reporting(0);
-        echo $_GET['msg'];
-    ?>
+        <?php
+            error_reporting(0);
+            echo $_GET['msg'];
+        ?>
     </div>
     <script src="javascript/password-manipulation.js"></script>
 </body>
