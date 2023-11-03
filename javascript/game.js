@@ -57,6 +57,9 @@ function generatePrompt(){
     }
 }
 
+/**
+ * Enables the user to type into the text field
+ */
 function makeUserInputAvailable(){
     inputElement.disabled = false;
     inputElement.value = '';
@@ -64,6 +67,10 @@ function makeUserInputAvailable(){
     clearInterval(countdownTimer);
 }
 
+/**
+ * Accesses the array of java text and turns 20 random words from it
+ * @returns A random string of java syntax
+ */
 function javaText(){
     let text = '';
     for(let i = 0; i < 20; i++){
@@ -73,6 +80,10 @@ function javaText(){
     return text;
 }
 
+/**
+ * Accesses the array of python text and turns 20 random words from it
+ * @returns A random string of python syntax
+ */
 function pythonText(){
     let text = '';
     for(let i = 0; i < 20; i++){
@@ -82,6 +93,10 @@ function pythonText(){
     return text;
 }
 
+/**
+ * Accesses the array of C++ text and turns 20 random words from it
+ * @returns A random string of C++ syntax
+ */
 function cText(){
     let text = '';
     for(let i = 0; i < 20; i++){
@@ -121,10 +136,10 @@ function stopTimer(){
 
 //Time settings
 let times = document.querySelectorAll('.time');
-let timer2 = document.getElementById('timer');
+let timerLabel = document.getElementById('timer');
 times.forEach(t => {
 t.addEventListener('click', () => {
-    timer2.textContent = `${t.textContent}`;
+    timerLabel.textContent = `${t.textContent}`;
     selectedTime = document.getElementById('timer').textContent;
     });
 });

@@ -52,6 +52,9 @@
                                 <th>Python</th>
                                 <th>C++</th>
                             </tr>
+                            <?php
+                                include('connection/connection.php');
+                            ?>
                         </thead>
                         <tbody class='table-group-divider table-bordered border border-success-subtle' align='center'>
                             <tr>
